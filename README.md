@@ -9,8 +9,9 @@ This is the documentation for [Project 01] of [CSE.30341.FA17].
 Members
 -------
 
-1. Domer McDomerson (dmcdomer@nd.edu)
-2. Belle Fleur (bfleur@nd.edu)
+1. Anthony Luc (aluc@nd.edu)
+2. Donald Luc (dluc@nd.edu)
+3. Michael Wang (mwang6@nd.edu)
 
 Design
 ------
