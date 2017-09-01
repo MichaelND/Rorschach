@@ -48,6 +48,8 @@ Design
 >         To execute the corresponding action, we'd need to use execvp(). We
 >     will use regexec() to determine if the file matches a provided pattern.
 >         We also will use basename() to aqcuire the basename of the file.
+>         We will need to use fopen() and fgets() to open the rules file and
+>     read in the rules line by line.
 >
 >   2. How would you pass the environment variables to the command?
 >         To pass environment variables to the command, we are storing all of
