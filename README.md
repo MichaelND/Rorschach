@@ -20,9 +20,20 @@ Design
 > if a file has been created, modified, or removed.
 >
 >   1. What system calls would you need to use?
+>         To scan and search directories, you would need to use opendir(),
+>     readdir(), and closedir(). We will certainly use the stat() function to
+>     determine metadata information about the file.
 >
 >   2. What information would you need to store and what data structures would
 >      you need?
+>         We will need to store the root directory. Also, we would need to store
+>     the modification time and the last scan time. Then, we need to store the
+>     inode number and the file path. Our data structure will be an array of
+>     structs. These structs store the inode number, the file path, and the
+>     modification time. We will simply iterate through the array and stat each
+>     element. If the stat fails, then we know that it was removed. If it
+>     succeeds, then we can determine, based on the modification time, if the
+>     file was just created or modified.
 
 .
 
@@ -30,8 +41,10 @@ Design
 > corresponding action.
 >
 >   1. What system calls would you need to use?
+>         TODO
 >
 >   2. How would you pass the environment variables to the command?
+>
 
 .
 
@@ -39,8 +52,10 @@ Design
 > cleanup?
 >
 >   1. What system calls would you need to use?
+>         TODO
 >
 >   2. How would you know what resources to cleanup?
+>         TODO
 
 Testing
 -------
