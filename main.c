@@ -7,7 +7,7 @@
 
 /* Globals */
 char * PROGRAM_NAME = NULL;
-char * RULES = 'rules';
+char * RULES = "rules";
 int SECONDS = 5;
 
 
