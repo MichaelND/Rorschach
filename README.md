@@ -22,18 +22,22 @@ Design
 >   1. What system calls would you need to use?
 >         To scan and search directories, you would need to use opendir(),
 >     readdir(), and closedir(). We will certainly use the stat() function to
->     determine metadata information about the file.
+>     determine the metadata information about the file.
 >
 >   2. What information would you need to store and what data structures would
 >      you need?
 >         We will need to store the root directory. Also, we would need to store
 >     the modification time and the last scan time. Then, we need to store the
->     inode number and the file path. Our data structure will be an array of
->     structs. These structs store the inode number, the file path, and the
->     modification time. We will simply iterate through the array and stat each
->     element. If the stat fails, then we know that it was removed. If it
->     succeeds, then we can determine, based on the modification time, if the
->     file was just created or modified.
+>     inode number and the file path. Our data structure will be a binary tree
+>     of structs, sorted by inode. These structs store only the file path, and
+>     modification time. For creations and  modifications, we will use binary
+>     search. For removals, we will use a preorder traversal to scan the binary
+>     tree and stat each element. If the stat fails, then we know that it was
+>     removed. If it succeeds, then we can determine, based on the modification
+>     time, if the file was just created or modified.
+>         For storing rules, we will use separate lists for the create,
+>     modified, and removed rules. These lists will store structs that contain
+>     the pattern and the action.
 
 .
 
@@ -41,10 +45,14 @@ Design
 > corresponding action.
 >
 >   1. What system calls would you need to use?
->         TODO
+>         To execute the corresponding action, we'd need to use execvp(). We
+>     will use regexec() to determine if the file matches a provided pattern.
+>         We also will use basename() to aqcuire the basename of the file.
 >
 >   2. How would you pass the environment variables to the command?
->
+>         To pass environment variables to the command, we are storing all of
+>      the important variables in our data structure and then passing them to
+>      our function that handles the command.
 
 .
 
@@ -52,10 +60,12 @@ Design
 > cleanup?
 >
 >   1. What system calls would you need to use?
->         TODO
+>         We will need to use signal() to catch the signal as well as our
+>         own signal handler.
 >
 >   2. How would you know what resources to cleanup?
->         TODO
+>         We will cleanup anything we malloc() such as our structs in our binary
+>     tree and our structs in our linked lists.
 
 Testing
 -------
