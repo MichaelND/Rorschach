@@ -33,9 +33,9 @@ int	main(int argc, char *argv[]) {
         if (arg[1] == 'h')
             usage(PROGRAM_NAME, 0);
         else if (arg[1] == 'f')
-        	RULES = argv[2];
+        	RULES = strdup(argv[2]);
         else if (arg[1] == 't')
-        	SECONDS = argv[2];
+        	SECONDS = stoi(argv[2]);
     }
 
     return EXIT_SUCCESS;
