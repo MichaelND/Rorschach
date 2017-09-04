@@ -43,15 +43,16 @@ int	main(int argc, char *argv[]) {
         else if (arg[1] == 'f')
         	RULES = argv[2];
         else if (arg[1] == 't')
-        	SECONDS = stoi(argv[2]);
+        	SECONDS = atoi(argv[2]);
     }
 
     //Set the root path
     PATH = argv[argind];
 
     while (1) {
-        search(PATH);
-        wait(SECONDS);
+        //search(PATH);
+        puts("a");
+        wait(&SECONDS);
     }
 
     return EXIT_SUCCESS;
