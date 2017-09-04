@@ -20,7 +20,7 @@ typedef struct {
 
 /* Function prototypes */
 
-// int	    search(const char *root, const Settings *settings);
+int	    search(const char *root);
 // bool	    filter(const char *path, const Settings *settings);
 // int         execute(const char *path, const Settings *settings);
 

@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
-
 #include <dirent.h>
 
 /**
@@ -31,7 +30,7 @@ int	    search(const char *root) {
         //     execute(path,settings);
         // if (dentry->d_type == DT_DIR) 
         //     search(path,settings);
-        
+
     }
     closedir(parent_dir); //close
     return EXIT_SUCCESS;

@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -43,7 +42,7 @@ int	main(int argc, char *argv[]) {
         else if (arg[1] == 'f')
         	RULES = argv[2];
         else if (arg[1] == 't')
-        	SECONDS = stoi(argv[2]);
+        	SECONDS = atoi(argv[2]);
     }
 
     //Set the root path
