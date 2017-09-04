@@ -1,12 +1,12 @@
 /* search.c */
 
-#include "search.h"
+#include "bst.h"
 
 #include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-//#include <sys/stat.h>
+#include <sys/stat.h>
 
 #include <dirent.h>
 
@@ -16,23 +16,22 @@
  * @param   settings    Settings structure
  * @return  Whether or not the search was successful.
  */
-int	    search(const char *root, const Settings *settings) {	
-    struct dirent * dentry;
-    // struct stat inode;
+int	    search(const char *root) {	
     DIR * parent_dir = opendir(root);
-    char path[BUFSIZ];
-    if (parent_dir == NULL) { //check if directory is openable
-    	return EXIT_FAILURE;
-    }
-    while ((dentry = readdir(parent_dir)) != NULL) { //read
-        sprintf(path, "%s/%s", root, dentry->d_name);
+    if (parent_dir == NULL) { return EXIT_FAILURE; }//check if directory is openable
+
+    struct dirent * dentry;
+    while ((dentry = readdir(parent_dir))) { //read
         
-        if (strcmp(dentry->d_name, ".") != 0 && strcmp(dentry->d_name, "..") != 0) {
-            if (filter(path,settings) == false)
-                execute(path,settings);
-            if (dentry->d_type == DT_DIR) 
-                search(path,settings);
-        }
+        if (streq(dentry->d_name, ".") || streq(dentry->d_name, ".."))
+            continue;
+
+        puts(e->d_name);
+        // if (filter(path,settings) == false)
+        //     execute(path,settings);
+        // if (dentry->d_type == DT_DIR) 
+        //     search(path,settings);
+        
     }
     closedir(parent_dir); //close
     return EXIT_SUCCESS;

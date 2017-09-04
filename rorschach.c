@@ -49,10 +49,10 @@ int	main(int argc, char *argv[]) {
     //Set the root path
     PATH = argv[argind];
 
-    while (1) {
-        search(PATH);
-        wait(SECONDS);
-    }
+    // while (1) {
+    search(PATH);
+        // wait(SECONDS);
+    // }
 
     return EXIT_SUCCESS;
 }
