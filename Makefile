@@ -6,39 +6,40 @@ TARGETS=	rorschach
 
 all:		$(TARGETS)
 
+test:
+	@echo Testing ...
+	@[ `valgrind --leak-check=full ./rorschach .` ]
+
+
 rorschach: rorschach.o search.o examine.o rules.o
 	@echo "Linking $@..."
-	@$(LD) $(LDFLAGS) -o $o $@ $^
+	@$(LD) $(LDFLAGS) -o $@ $^
 
 rorschach.o: rorschach.c
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 search: search.o
-	@echo "Linking $@..."
-	@$(LD) $(LDFLAGS) -o $o $@ $^
+	@$(CC) $(CFLAGS) -o $@ $^
 
 search.o: search.c
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 examine: examine.o
-	@echo "Linking $@..."
-	@$(LD) $(LDFLAGS) -o $o $@ $^
+	@$(CC) $(CFLAGS) -o  $@ $^
 
 examine.o: examine.c
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 rules: rules.o
-	@echo "Linking $@..."
-	@$(LD) $(LDFLAGS) -o $o $@ $^
+	@$(CC) $(CFLAGS) -o $@ $^
 
 rules.o: rules.c
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 clean:
-	@echo Cleaning...
+	@echo "Cleaning..."
 	@rm -f $(TARGETS) *.o
-

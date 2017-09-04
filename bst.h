@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 /* bst.h */
 
 #ifndef BST_H
@@ -28,3 +31,4 @@ int	    search(const char *root);
 // time_t      get_mtime(const char *path);
 
 #endif
+>>>>>>> f0db03be9182f5e7a85c48875914508dd2abc8bb
