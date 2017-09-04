@@ -48,18 +48,12 @@ int	main(int argc, char *argv[]) {
     //Set the root path
     PATH = argv[argind];
 
-<<<<<<< HEAD
     while (1) {
-        //search(PATH);
-        puts("a");
-        wait(&SECONDS);
+        search(PATH);
+        // puts("a");
+        sleep(SECONDS);
+//        search(PATH);
     }
-=======
-    // while (1) {
-    search(PATH);
-        // wait(SECONDS);
-    // }
->>>>>>> f0db03be9182f5e7a85c48875914508dd2abc8bb
 
     return EXIT_SUCCESS;
 }

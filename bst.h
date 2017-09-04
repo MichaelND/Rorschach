@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 /* bst.h */
 
 #ifndef BST_H
@@ -16,6 +13,8 @@
 
 typedef struct {
 
+	Leaf *left;
+	Leaf *right;
 	char *path;			/* Get the path of the file so stat can be called */
 	time_t time;       /* File was modified more recently than file (-newer) */ 
 
@@ -31,4 +30,3 @@ int	    search(const char *root);
 // time_t      get_mtime(const char *path);
 
 #endif
->>>>>>> f0db03be9182f5e7a85c48875914508dd2abc8bb

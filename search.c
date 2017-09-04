@@ -25,7 +25,7 @@ int	    search(const char *root) {
         if (streq(dentry->d_name, ".") || streq(dentry->d_name, ".."))
             continue;
 
-        puts(e->d_name);
+        puts(dentry->d_name);
         // if (filter(path,settings) == false)
         //     execute(path,settings);
         // if (dentry->d_type == DT_DIR) 
