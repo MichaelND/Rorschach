@@ -6,13 +6,13 @@ TARGETS=	rorschach
 
 all:		$(TARGETS)
 
-rorschach: rorschac.o search.o
+rorschach: rorschach.o search.o
 	@echo "Linking $@..."
 	@$(LD) $(LDFLAGS) -o $o $@ $^
 
-rorschach.o: rorschac.c
+rorschach.o: rorschach.c
 	@echo "Compiling $@..."
-	@$(CC) $(CFLAGS -c -o $@ $^)
+	@$(CC) $(CFLAGS) -c -o $@ $^
 
 search: search.o
 	@echo "Linking $@..."
@@ -20,7 +20,7 @@ search: search.o
 
 search.o: search.c
 	@echo "Compiling $@..."
-	@$(CC) $(CFLAGS -c -o $@ $^)
+	@$(CC) $(CFLAGS) -c -o $@ $^
 
 
 clean:
