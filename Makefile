@@ -7,8 +7,8 @@ TARGETS=	rorschach
 all:		$(TARGETS)
 
 test:
-		@echo Testing ...
-		@[ `valgrind --leak-check=full ./rorschach .` ]
+	@echo Testing ...
+	@[ `valgrind --leak-check=full ./rorschach .` ]
 
 
 rorschach: rorschach.o search.o examine.o rules.o
