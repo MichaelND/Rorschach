@@ -16,23 +16,27 @@
  */
 int	    search(const char *root) {	
     DIR * parent_dir = opendir(root);
-    if (parent_dir == NULL) { return EXIT_FAILURE; }//check if directory is openable
+    if (parent_dir == NULL) { return EXIT_FAILURE; }    // Check if directory is openable
 
     struct dirent * dentry;
-    while ((dentry = readdir(parent_dir))) { //read
+    while ((dentry = readdir(parent_dir))) {            // Read
         
         if (streq(dentry->d_name, ".") || streq(dentry->d_name, ".."))
             continue;
 
         puts(dentry->d_name);
 
+        char path[BUFSIZ];
+        sprintf(path, "%s/%s", root, dentry->d_name);
+
         // if (filter(path,settings) == false)
         //     execute(path,settings);
-        // if (dentry->d_type == DT_DIR) 
-        //     search(path,settings);
+        if (dentry->d_type == DT_DIR)
+            search(path);
+
 
     }
-    closedir(parent_dir); //close
+    closedir(parent_dir);                               // Close
     return EXIT_SUCCESS;
 }
 
