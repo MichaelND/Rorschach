@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include <sys/stat.h>
 #include <unistd.h>
@@ -40,9 +41,17 @@ int	main(int argc, char *argv[]) {
         if (arg[1] == 'h')
             usage(PROGRAM_NAME, 0);
         else if (arg[1] == 'f')
-        	RULES = strdup(argv[2]);
+        	RULES = argv[2];
         else if (arg[1] == 't')
         	SECONDS = stoi(argv[2]);
+    }
+
+    //Set the root path
+    PATH = argv[argind];
+
+    while (1) {
+        search(PATH);
+        wait(SECONDS);
     }
 
     return EXIT_SUCCESS;
