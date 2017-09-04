@@ -11,7 +11,7 @@
 
 /* Type definitions */
 
-typedef struct {
+typedef struct Leaf {
 
 	Leaf *left;
 	Leaf *right;

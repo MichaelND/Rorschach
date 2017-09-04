@@ -12,7 +12,6 @@
 /**
  * Recursively search through the provided root directory
  * @param   root        Path to directory
- * @param   settings    Settings structure
  * @return  Whether or not the search was successful.
  */
 int	    search(const char *root) {	
@@ -26,6 +25,7 @@ int	    search(const char *root) {
             continue;
 
         puts(dentry->d_name);
+
         // if (filter(path,settings) == false)
         //     execute(path,settings);
         // if (dentry->d_type == DT_DIR) 
