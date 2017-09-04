@@ -1,6 +1,6 @@
-CC=			gcc
-CFLAGS=		-g -gdwarf-2 -Wall -std=gnu99
-LD=			gcc
+CC=			g++
+CFLAGS=		-g -gdwarf-2 -Wall -std=gnu++11
+LD=			g++
 LDFLAGS=	-L.
 TARGETS=	rorschach
 
@@ -15,28 +15,28 @@ rorschach: rorschach.o search.o examine.o rules.o
 	@echo "Linking $@..."
 	@$(LD) $(LDFLAGS) -o $@ $^
 
-rorschach.o: rorschach.c
+rorschach.o: rorschach.cpp
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 search: search.o
 	@$(CC) $(CFLAGS) -o $@ $^
 
-search.o: search.c
+search.o: search.cpp
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 examine: examine.o
 	@$(CC) $(CFLAGS) -o  $@ $^
 
-examine.o: examine.c
+examine.o: examine.cpp
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 rules: rules.o
 	@$(CC) $(CFLAGS) -o $@ $^
 
-rules.o: rules.c
+rules.o: rules.cpp
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
