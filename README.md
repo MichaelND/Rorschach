@@ -109,3 +109,8 @@ Extra Credit
 ------------
 
 > Describe what extra credit (if any) that you implemented.
+
+Grader
+------
+
+- John "Jeffrey" Westhoff (jwesthof@nd.edu)
