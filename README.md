@@ -28,11 +28,11 @@ Design
 >      you need?
 >         We will need to store the root directory. Also, we would need to store
 >     the modification time and the last scan time. Then, we need to store the
->     inode number and the file path. Our data structure will be a binary tree
->     of structs, sorted by inode. These structs store only the file path, and
->     modification time. For creations and  modifications, we will use binary
->     search. For removals, we will use a preorder traversal to scan the binary
->     tree and stat each element. If the stat fails, then we know that it was
+>     inode number and the file path. Our data structure will be an unordered
+>	  set of structs, stored by inode. These structs store only the file path,
+>	  and modification time. For creations and  modifications, we expect O(1)
+>     search. For removals, we expect O(n) time to simply iterate through the
+>     set and stat each element. If the stat fails, then we know that it was
 >     removed. If it succeeds, then we can determine, based on the modification
 >     time, if the file was just created or modified.
 >         For storing rules, we will use separate lists for the create,
@@ -63,11 +63,11 @@ Design
 >
 >   1. What system calls would you need to use?
 >         We will need to use signal() to catch the signal as well as our
->         own signal handler.
+>     own signal handler.
 >
 >   2. How would you know what resources to cleanup?
->         We will cleanup anything we malloc() such as our structs in our binary
->     tree and our structs in our linked lists.
+>         We will cleanup anything we malloc() such as our structs in our
+>     unordered set and our structs in our linked lists.
 
 Testing
 -------
