@@ -1,7 +1,7 @@
-/* bst.hpp */
+/* node.hpp */
 
-#ifndef BST_HPP
-#define	BST_HPP
+#ifndef NODE_HPP
+#define	NODE_HPP
 
 #include <stdio.h>
 #include <time.h>
