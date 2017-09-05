@@ -27,7 +27,7 @@ int	    search(const char *root) {
         puts(dentry->d_name);
 
         char path[BUFSIZ];
-        sprintf(path, "%s/%s", root, dentry->d_name);    // Store path of file
+        sprintf(path, "%s%s", root, dentry->d_name);    // Store path of file
 
         // if (filter(path,settings) == false)
         //     execute(path,settings);
