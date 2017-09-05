@@ -1,4 +1,4 @@
-#include "bst.hpp"
+#include "node.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>

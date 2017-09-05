@@ -1,7 +1,7 @@
-/* node.hpp */
+/* bst.hpp */
 
-#ifndef NODE_HPP
-#define	NODE_HPP
+#ifndef BST_HPP
+#define	BST_HPP
 
 #include <stdio.h>
 #include <time.h>
@@ -12,6 +12,7 @@
 /* Type definitions */
 
 typedef struct Leaf {
+
 	char *path;			/* Get the path of the file so stat can be called */
 	time_t time;       /* File was modified more recently than file (-newer) */ 
 

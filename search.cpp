@@ -1,6 +1,6 @@
 /* search.c */
 
-#include "bst.hpp"
+#include "node.hpp"
 
 #include <errno.h>
 #include <stdlib.h>
