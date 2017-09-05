@@ -4,27 +4,38 @@
 #define	NODE_HPP
 
 #include <stdio.h>
+#include <string>
 #include <time.h>
+
+using namespace std;
 
 /* Macros */
 #define	    streq(s0, s1)   (strcmp((s0), (s1)) == 0)
 
-/* Type definitions */
+/* Node Class Interface */
+class Node
+{
+public:
+	// Constructor and Deconstructor
+	Node();
+	Node(string path, time_t m_time);
+	~Node();
 
-typedef struct Leaf {
+	// Returns file path and sets file path.
+	string  getPath();
+	void 	setPath(string path);
 
-	char *path;			/* Get the path of the file so stat can be called */
-	time_t time;       /* File was modified more recently than file (-newer) */ 
+	// Returns file modification time and sets file modification time.
+	time_t 	getMTime();
+	void 	setMTime(time_t m_time);
 
-} Leaf;
+private:
+	string path;
+	time_t m_time; // Modification time
+};
 
-/* Function prototypes */
 
-int	    search(const char *root);
-// bool	    filter(const char *path, const Settings *settings);
-// int         execute(const char *path, const Settings *settings);
-
-// bool        is_directory_empty(const char *path);
-// time_t      get_mtime(const char *path);
+/* Search Prototype */
+int search(const char *root);
 
 #endif

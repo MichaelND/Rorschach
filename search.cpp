@@ -24,6 +24,8 @@ int	    search(const char *root) {
         if (streq(dentry->d_name, ".") || streq(dentry->d_name, ".."))
             continue;
 
+        // TODO : Verify if File --> Store Into U_Set
+
         puts(dentry->d_name);
 
         char path[BUFSIZ];

@@ -9,6 +9,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include <iostream>
+
 using namespace std;
 
 /* Globals */
@@ -51,6 +53,13 @@ int	main(int argc, char *argv[]) {
 
     // Set the root path
     PATH = argv[argind];
+
+    Node a;
+    Node b(".", 1);
+
+    // Testing Nodes
+    cout << a.getPath() << endl;
+    cout << b.getPath() << endl;
 
     while (1) {
         search(PATH);
