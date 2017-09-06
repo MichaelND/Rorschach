@@ -3,6 +3,7 @@
 using namespace std;
 
 void examine(unordered_map<int, Node> &mapOfNodes) {
+    vector<int>	v_inodes;
 	
     for (auto it = mapOfNodes.begin(); it != mapOfNodes.end(); it++) {
         int 		inode 	= (*it).second.getINode();
@@ -19,7 +20,14 @@ void examine(unordered_map<int, Node> &mapOfNodes) {
         } else {
         	// File does not exist.
         	cout << "Detected \"DELETE\" event on \"" << path << "\"" << endl;
-        	mapOfNodes.erase(inode);				// Remove file node from unordered map.
+        	v_inodes.push_back(inode);
         }
+    }
+
+    // Delete members from map if there are detected delete events.
+    if (!v_inodes.empty()) {
+    	for (auto it = v_inodes.begin(); it != v_inodes.end(); it++) {
+    		mapOfNodes.erase(*it);				// Remove file node from unordered map.
+    	}
     }
 }
