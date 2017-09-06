@@ -19,6 +19,7 @@ void examine(unordered_map<int, Node> &mapOfNodes) {
         } else {
         	// File does not exist.
         	cout << "Detected \"DELETE\" event on \"" << path << "\"" << endl;
+        	mapOfNodes.erase(inode);				// Remove file node from unordered map.
         }
     }
 }
