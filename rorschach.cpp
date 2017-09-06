@@ -6,18 +6,11 @@
 #include <string.h>
 #include <time.h>
 
-#include <sys/stat.h>
 #include <unistd.h>
 
 #include <iostream>
 
 using namespace std;
-
-/* Globals */
-char *PROGRAM_NAME = NULL;
-std::string RULES = "rules";
-char *PATH = NULL;
-int SECONDS = 5;
 
 /* Functions */
 void usage(const char *program_name, int status) {
@@ -31,7 +24,14 @@ void usage(const char *program_name, int status) {
 
 /* Main Execution */
 int	main(int argc, char *argv[]) {
-    //Parse Command Line Arguments
+    // Declare variables.
+    char *PROGRAM_NAME = NULL;
+    std::string RULES = "rules";
+    char *PATH = NULL;
+    int SECONDS = 5;
+    unordered_set<Node> setOfNodes;
+
+    // Parse Command Line Arguments
     PROGRAM_NAME = argv[0];
     int argind = 1;
 
@@ -54,18 +54,12 @@ int	main(int argc, char *argv[]) {
     // Set the root path
     PATH = argv[argind];
 
-    Node a;
-    Node b(".", 1);
-
-    // Testing Nodes
-    cout << a.getPath() << endl;
-    cout << b.getPath() << endl;
-
     while (1) {
-        search(PATH);
-        // puts("a");
+        search(PATH, setOfNodes);
+        examine(setOfNodes);
+        cout << endl;
+
         sleep(SECONDS);
-//        search(PATH);
     }
 
     return EXIT_SUCCESS;
