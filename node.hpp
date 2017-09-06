@@ -10,7 +10,7 @@
 #include <string>
 #include <time.h>
 
-#include <unordered_set>
+#include <unordered_map>
 
 using namespace std;
 
@@ -61,9 +61,9 @@ namespace std {
 
 
 /* Search Prototype */
-int search(const char *root, unordered_set<Node> &setOfNodes);
+int search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag);
 
 /* Examine Prototype */
-void examine (unordered_set<Node> &setOfNodes);
+void examine (unordered_map<int, Node> &mapOfNodes);
 
 #endif

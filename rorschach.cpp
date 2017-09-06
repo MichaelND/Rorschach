@@ -29,7 +29,7 @@ int	main(int argc, char *argv[]) {
     std::string RULES = "rules";
     char *PATH = NULL;
     int SECONDS = 5;
-    unordered_set<Node> setOfNodes;
+    unordered_map<int, Node> mapOfNodes;
 
     // Parse Command Line Arguments
     PROGRAM_NAME = argv[0];
@@ -54,12 +54,13 @@ int	main(int argc, char *argv[]) {
     // Set the root path
     PATH = argv[argind];
 
+    search(PATH, mapOfNodes, 0);
     while (1) {
-        search(PATH, setOfNodes);
-        examine(setOfNodes);
+        sleep(SECONDS);
+        search(PATH, mapOfNodes, 1);
+        examine(mapOfNodes);
         cout << endl;
 
-        sleep(SECONDS);
     }
 
     return EXIT_SUCCESS;
