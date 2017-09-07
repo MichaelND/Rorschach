@@ -29,11 +29,12 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag
         char path[BUFSIZ];
         sprintf(path, "%s/%s", root, dentry->d_name);   // Store path of file
 
-        if (dentry->d_type == DT_DIR)
+        if (dentry->d_type == DT_DIR) {
             search(path, mapOfNodes, flag);
+        }
         if (dentry->d_type == DT_REG) {
             struct stat s;
-            if (stat(dentry->d_name, &s) == 0) {
+            if (stat(path, &s) == 0) {
                 Node file(path, s.st_mtime, s.st_ino);
                 unordered_map<int, Node>::const_iterator got = mapOfNodes.find(s.st_ino);
                 if ( got == mapOfNodes.end()) {         // The file has been created.
@@ -42,6 +43,8 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag
                         cout << "Detected \"CREATION\" event on \"" << path << "\"" << endl;
                     }
                 }
+            } else {
+                cout << "Stat failed: " << strerror(errno) << endl;
             }
         }
     }
