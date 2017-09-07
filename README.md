@@ -29,10 +29,10 @@ Design
 >         We will need to store the root directory. Also, we would need to store
 >     the modification time and the last scan time. Then, we need to store the
 >     inode number and the file path. Our data structure will be an unordered
->	  set of structs, stored by inode. These structs store only the file path,
+>	  map of structs, stored by inode. These structs store only the file path,
 >	  and modification time. For creations and  modifications, we expect O(1)
 >     search. For removals, we expect O(n) time to simply iterate through the
->     set and stat each element. If the stat fails, then we know that it was
+>     map and stat each element. If the stat fails, then we know that it was
 >     removed. If it succeeds, then we can determine, based on the modification
 >     time, if the file was just created or modified.
 >         For storing rules, we will use separate lists for the create,
@@ -67,7 +67,7 @@ Design
 >
 >   2. How would you know what resources to cleanup?
 >         We will cleanup anything we malloc() such as our structs in our
->     unordered set and our structs in our linked lists.
+>     unordered map and our structs in our linked lists.
 
 Testing
 -------
