@@ -47,12 +47,23 @@ int	main(int argc, char *argv[]) {
             usage(PROGRAM_NAME, 0);
         else if (arg[1] == 'f')
         	RULES = argv[2];
-        else if (arg[1] == 't')
+        else if (arg[1] == 't') 
         	SECONDS = atoi(argv[2]);
+
+        argind++;
     }
+
+    //check for improper formatting
+    if (argind >= argc) 
+        usage(PROGRAM_NAME, 1); //CHECK FOR INVALID COMMAND LINE ARGUMENTS
 
     // Set the root path.
     PATH = argv[argind];
+
+    char real[BUFSIZ];
+    realpath(PATH, real); //find the realpath and store it into real
+
+    cout << "Monitoring " << real << endl;
 
     // Store rules.
     /*
@@ -66,11 +77,10 @@ int	main(int argc, char *argv[]) {
     }
     */
 
-
-    search(PATH, mapOfNodes, 0);
+    search(real, mapOfNodes, 0);
     while (1) {
         sleep(SECONDS);
-        search(PATH, mapOfNodes, 1);
+        search(real, mapOfNodes, 1);
         examine(mapOfNodes);
         cout << endl;
 

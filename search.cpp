@@ -29,21 +29,36 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag
         char path[BUFSIZ];
         sprintf(path, "%s/%s", root, dentry->d_name);   // Store path of file
 
+        //check if directory 
         if (dentry->d_type == DT_DIR) {
             search(path, mapOfNodes, flag);
         }
+
+        //check if file
         if (dentry->d_type == DT_REG) {
             struct stat s;
+
             if (stat(path, &s) == 0) {
+                //create node with file data into class
                 Node file(path, s.st_mtime, s.st_ino);
+
                 unordered_map<int, Node>::const_iterator got = mapOfNodes.find(file.getINode());
-                if ( got == mapOfNodes.end()) {         // The file has been created.
+
+                if (got == mapOfNodes.end()) {         // The file has been created.
                     mapOfNodes.insert({s.st_ino, file});
-                    if (flag) {   // Handle rule for creation.
+
+                    // Handle rule for creation.
+                    if (flag) {   
                         cout << "Detected \"CREATION\" event on \"" << path << "\"" << endl;
+                        setenv("EVENT", "CREATE", 1); //set environment variable event to delete
+                        setenv("BASEPATH", dentry->d_name, 1);
+                        setenv("FULLPATH", path, 1);
+                        setenv("TIMESTAMP", (char*)time(0), 1);
+                        execute(1);
                     }
                 }
-            } else {
+            } 
+            else {
                 cout << "Stat failed: " << strerror(errno) << endl;
             }
         }

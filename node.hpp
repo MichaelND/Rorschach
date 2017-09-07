@@ -67,4 +67,7 @@ int search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag);
 /* Examine Prototype */
 void examine (unordered_map<int, Node> &mapOfNodes);
 
+/* Execute Prototype */
+void execute(int a);
+
 #endif
