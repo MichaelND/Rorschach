@@ -36,7 +36,7 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag
             struct stat s;
             if (stat(path, &s) == 0) {
                 Node file(path, s.st_mtime, s.st_ino);
-                unordered_map<int, Node>::const_iterator got = mapOfNodes.find(s.st_ino);
+                unordered_map<int, Node>::const_iterator got = mapOfNodes.find(file.getINode());
                 if ( got == mapOfNodes.end()) {         // The file has been created.
                     mapOfNodes.insert({s.st_ino, file});
                     if (flag) {   // Handle rule for creation.

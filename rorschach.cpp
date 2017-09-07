@@ -36,7 +36,7 @@ int	main(int argc, char *argv[]) {
     int argind = 1;
 
     if (argc == 1) {
-        usage(PROGRAM_NAME, 1); //no command line arguments given
+        usage(PROGRAM_NAME, 1); // No command line arguments given
     }
 
     // Parse through flags
@@ -51,8 +51,21 @@ int	main(int argc, char *argv[]) {
         	SECONDS = atoi(argv[2]);
     }
 
-    // Set the root path
+    // Set the root path.
     PATH = argv[argind];
+
+    // Store rules.
+    /*
+    FILE * oFile;
+    oFile = fopen(RULES.c_str(), "r"); 
+    if (oFile != NULL) {
+        cout << "openable";
+    } else {
+        cout << "Fopen failed: " << strerror(errno) << endl;
+        return EXIT_FAILURE;
+    }
+    */
+
 
     search(PATH, mapOfNodes, 0);
     while (1) {
