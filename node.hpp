@@ -53,9 +53,9 @@ private:
 };
 
 struct inputrules{
-	string event;
-	string pattern;
-	string action;
+	char *event;
+	char *pattern;
+	char *action;
 };
 
 namespace std {
