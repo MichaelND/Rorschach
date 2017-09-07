@@ -30,6 +30,7 @@ int	main(int argc, char *argv[]) {
     char *PATH = NULL;
     int SECONDS = 5;
     unordered_map<int, Node> mapOfNodes;
+    vector<inputrules> rulesVector;   // Vector of vectors for rules
 
     // Parse Command Line Arguments
     PROGRAM_NAME = argv[0];
@@ -65,17 +66,13 @@ int	main(int argc, char *argv[]) {
 
     cout << "Monitoring " << real << endl;
 
+    // Get file full path.
+    char rulefullpath[BUFSIZ]; 
+    realpath(RULES.c_str(), rulefullpath);
     // Store rules.
-    /*
-    FILE * oFile;
-    oFile = fopen(RULES.c_str(), "r"); 
-    if (oFile != NULL) {
-        cout << "openable";
-    } else {
-        cout << "Fopen failed: " << strerror(errno) << endl;
+    if (rules(rulefullpath, rulesVector) != 0) {
         return EXIT_FAILURE;
     }
-    */
 
     search(real, mapOfNodes, 0);
     while (1) {

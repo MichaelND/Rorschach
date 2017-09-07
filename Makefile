@@ -11,7 +11,7 @@ test:
 	@[ `valgrind --leak-check=full ./rorschach .` ]
 
 
-rorschach: rorschach.o search.o examine.o rules.o node.o
+rorschach: rorschach.o search.o examine.o execute.o rules.o node.o match.o
 	@echo "Linking $@..."
 	@$(LD) $(LDFLAGS) -o $@ $^
 
@@ -30,6 +30,20 @@ examine: examine.o
 	@$(CC) $(CFLAGS) -o  $@ $^
 
 examine.o: examine.cpp
+	@echo "Compiling $@..."
+	@$(CC) $(CFLAGS) -c -o $@ $^
+
+execute: execute.o
+	@$(CC) $(CFLAGS) -o  $@ $^
+
+execute.o: execute.cpp
+	@echo "Compiling $@..."
+	@$(CC) $(CFLAGS) -c -o $@ $^
+
+match: match.o
+	@$(CC) $(CFLAGS) -o $@ $^
+
+match.o: match.cpp
 	@echo "Compiling $@..."
 	@$(CC) $(CFLAGS) -c -o $@ $^
 

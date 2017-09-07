@@ -17,6 +17,9 @@ void examine(unordered_map<int, Node> &mapOfNodes) {
         		cout << "Detected \"MODIFICATION\" event on \"" << path << "\"" << endl;
                 setenv("EVENT", "MODIFY", 1); //set environment variable event to delete
         		(*it).second.setMTime(s.st_mtime);	// Update m_time of file node.
+                // if (match()) {
+                //     execute();
+                // }
         	}
         } else {
         	// File does not exist.

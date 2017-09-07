@@ -2,14 +2,15 @@
 
 #include "node.hpp"
 
-#include <stdlib.h>
-#include <string.h>
+//execute after detection of created, deleted, or modified event
+void	   execute() {
+	char *basepath, *fullpath, *event, *timestamp;
 
-#include <dirent.h>
-#include <sys/wait.h>
-#include <unistd.h>
+	basepath = getenv("BASEPATH");
+	fullpath = getenv("FULLPATH");
+	event = getenv("EVENT");
+	timestamp = getenv("TIMESTAMP");
 
-void	   execute(int a) {
 
 }
 

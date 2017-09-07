@@ -54,7 +54,7 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag
                         setenv("BASEPATH", dentry->d_name, 1);
                         setenv("FULLPATH", path, 1);
                         setenv("TIMESTAMP", (char*)time(0), 1);
-                        execute(1);
+                        execute();
                     }
                 }
             } 

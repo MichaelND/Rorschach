@@ -52,6 +52,12 @@ private:
 	int 	inode;		// Inode
 };
 
+struct inputrules{
+	string event;
+	string pattern;
+	string action;
+};
+
 namespace std {
     template<> struct hash<Node> {
     	size_t operator()(const Node & n) const {
@@ -68,6 +74,12 @@ int search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag);
 void examine (unordered_map<int, Node> &mapOfNodes);
 
 /* Execute Prototype */
-void execute(int a);
+void execute();
+
+/* Rules Prototype */
+int rules(char *fp, vector<inputrules> &v);
+
+/* Match Prototype */
+int match();
 
 #endif
