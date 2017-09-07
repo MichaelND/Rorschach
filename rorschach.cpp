@@ -55,7 +55,6 @@ int	main(int argc, char *argv[]) {
     PATH = argv[argind];
 
     // Store rules.
-    /*
     FILE * oFile;
     oFile = fopen(RULES.c_str(), "r"); 
     if (oFile != NULL) {
@@ -64,8 +63,6 @@ int	main(int argc, char *argv[]) {
         cout << "Fopen failed: " << strerror(errno) << endl;
         return EXIT_FAILURE;
     }
-    */
-
 
     search(PATH, mapOfNodes, 0);
     while (1) {
@@ -73,7 +70,6 @@ int	main(int argc, char *argv[]) {
         search(PATH, mapOfNodes, 1);
         examine(mapOfNodes);
         cout << endl;
-
     }
 
     return EXIT_SUCCESS;
