@@ -69,15 +69,16 @@ int	main(int argc, char *argv[]) {
     // Get file full path.
     char rulefullpath[BUFSIZ]; 
     realpath(RULES.c_str(), rulefullpath);
+
     // Store rules.
     if (rules(rulefullpath, rulesVector) != 0) {
         return EXIT_FAILURE;
     }
 
-    search(real, mapOfNodes, 0);
+    search(real, mapOfNodes, rulesVector, 0);
     while (1) {
         sleep(SECONDS);
-        search(real, mapOfNodes, 1);
+        search(real, mapOfNodes, rulesVector, 1);
         examine(mapOfNodes);
         cout << endl;
 

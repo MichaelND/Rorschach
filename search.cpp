@@ -16,7 +16,7 @@
  * @param   mapOfNodes  Unordered map of nodes
  * @return  Whether or not the search was successful.
  */
-int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag) {	
+int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector, bool flag) {	
     DIR * parent_dir = opendir(root);
     if (parent_dir == NULL) { return EXIT_FAILURE; }    // Check if directory is openable
 
@@ -31,7 +31,7 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag
 
         //check if directory 
         if (dentry->d_type == DT_DIR) {
-            search(path, mapOfNodes, flag);
+            search(path, mapOfNodes, rulesVector, flag);
         }
 
         //check if file
@@ -49,12 +49,25 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag
 
                     // Handle rule for creation.
                     if (flag) {   
-                        cout << "Detected \"CREATION\" event on \"" << path << "\"" << endl;
-                        setenv("EVENT", "CREATE", 1); //set environment variable event to delete
-                        setenv("BASEPATH", dentry->d_name, 1);
-                        setenv("FULLPATH", path, 1);
-                        setenv("TIMESTAMP", (char*)time(0), 1);
-                        execute();
+                        cout << "Detected \"CREATE\" event on \"" << path << "\"" << endl;
+                        const char *pattern = "CREATE";
+
+                        // DEBUG
+                        // for (auto rule : rulesVector) {
+                        //     cout << "RULE EVENT IN SEARCH.CPP: " << rule.event << endl;
+                        //     cout << "RULE PATTERN: " << rule.pattern << endl;
+                        //     cout << "RULE ACTION: " << rule.action << endl;
+                        // }
+
+                        if (match(pattern, path, rulesVector)) {
+                            setenv("EVENT", "CREATE", 1); //set environment variable event to delete
+                            setenv("BASEPATH", dentry->d_name, 1);
+                            setenv("FULLPATH", path, 1);
+                            setenv("TIMESTAMP", (char*)time(0), 1);
+                            execute();
+                        } else {
+                            return EXIT_FAILURE;
+                        }
                     }
                 }
             } 

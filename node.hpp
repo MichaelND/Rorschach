@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 #include <string>
+#include <string.h> // strcmp()
+#include <fnmatch.h>
 #include <time.h>
 
 #include <unordered_map>
@@ -52,11 +54,17 @@ private:
 	int 	inode;		// Inode
 };
 
-struct inputrules{
+struct inputrules {
+	inputrules(char *e, char *p, char *a)
+		: event(e), pattern(p), action(a)
+		{ }
+
 	char *event;
 	char *pattern;
 	char *action;
 };
+
+
 
 namespace std {
     template<> struct hash<Node> {
@@ -68,7 +76,7 @@ namespace std {
 
 
 /* Search Prototype */
-int search(const char *root, unordered_map<int, Node> &mapOfNodes, bool flag);
+int search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector, bool flag);
 
 /* Examine Prototype */
 void examine (unordered_map<int, Node> &mapOfNodes);
@@ -77,9 +85,9 @@ void examine (unordered_map<int, Node> &mapOfNodes);
 void execute();
 
 /* Rules Prototype */
-int rules(char *fp, vector<inputrules> &v);
+int rules(char *filepath, vector<inputrules> &rulesVector);
 
 /* Match Prototype */
-int match();
+int match(const char *event, const char *filepath, vector<inputrules> &rulesVector);
 
 #endif
