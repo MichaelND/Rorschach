@@ -14,6 +14,7 @@
 
 #include <unordered_map>
 #include <vector>
+#include <csignal>
 
 using namespace std;
 
@@ -82,12 +83,12 @@ int search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<inputr
 void examine (unordered_map<int, Node> &mapOfNodes);
 
 /* Execute Prototype */
-void execute();
+void execute(const char *action);
 
 /* Rules Prototype */
 int rules(char *filepath, vector<inputrules> &rulesVector);
 
 /* Match Prototype */
-int match(const char *event, const char *filepath, vector<inputrules> &rulesVector);
+int match(const char *event, const char *filepath, vector<inputrules> &rulesVector, const char *name);
 
 #endif

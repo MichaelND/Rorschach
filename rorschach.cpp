@@ -2,8 +2,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
-#include <string.h>
 #include <time.h>
 
 #include <unistd.h>
@@ -22,6 +20,14 @@ void usage(const char *program_name, int status) {
     exit(status);
 }
 
+/* Signal Handler */
+void signal_handler(int signal_number) {
+    cout << "Cleaning up" << endl;
+    // Clean up anything if need be...
+    cout << "Bye" << endl;
+    exit(EXIT_SUCCESS);
+}
+
 /* Main Execution */
 int	main(int argc, char *argv[]) {
     // Declare variables.
@@ -31,6 +37,9 @@ int	main(int argc, char *argv[]) {
     int SECONDS = 5;
     unordered_map<int, Node> mapOfNodes;
     vector<inputrules> rulesVector;   // Vector of vectors for rules
+
+    // Handle signal interrupts
+    signal(SIGINT, signal_handler);
 
     // Parse Command Line Arguments
     PROGRAM_NAME = argv[0];

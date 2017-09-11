@@ -52,21 +52,8 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<in
                         cout << "Detected \"CREATE\" event on \"" << path << "\"" << endl;
                         const char *pattern = "CREATE";
 
-                        // DEBUG
-                        // for (auto rule : rulesVector) {
-                        //     cout << "RULE EVENT IN SEARCH.CPP: " << rule.event << endl;
-                        //     cout << "RULE PATTERN: " << rule.pattern << endl;
-                        //     cout << "RULE ACTION: " << rule.action << endl;
-                        // }
-
-                        if (match(pattern, path, rulesVector)) {
-                            setenv("EVENT", "CREATE", 1); //set environment variable event to delete
-                            setenv("BASEPATH", dentry->d_name, 1);
-                            setenv("FULLPATH", path, 1);
-                            setenv("TIMESTAMP", (char*)time(0), 1);
-                            execute();
-                        } else {
-                            return EXIT_FAILURE;
+                        if (!match(pattern, path, rulesVector, dentry->d_name)) {
+                            continue;
                         }
                     }
                 }
@@ -76,9 +63,7 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<in
             }
         }
     }
-    closedir(parent_dir);                               // Close
+    closedir(parent_dir); // Close
 
     return EXIT_SUCCESS;
 }
-
-/* vim: set sts=4 sw=4 ts=8 expandtab ft=c: */

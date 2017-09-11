@@ -3,7 +3,7 @@
 #include "node.hpp"
 
 //execute after detection of created, deleted, or modified event
-void	   execute() {
+void	   execute(const char *action) {
 	char *basepath, *fullpath, *event, *timestamp;
 
 	basepath = getenv("BASEPATH");
@@ -11,7 +11,5 @@ void	   execute() {
 	event = getenv("EVENT");
 	timestamp = getenv("TIMESTAMP");
 
-
+	cout << "Executing action " << action << " on " << basepath << endl;
 }
-
-/* vim: set sts=4 sw=4 ts=8 expandtab ft=c: */
