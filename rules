@@ -1,3 +1,2 @@
 CREATE  *.c         cc -o ${BASEPATH} ${FULLPATH}
 MODIFY  *.c         cc -o ${BASEPATH} ${FULLPATH}
-
