@@ -73,10 +73,6 @@ int	main(int argc, char *argv[]) {
         argind++;
     }
 
-    //check for improper formatting
-    if (argind >= argc) 
-        usage(PROGRAM_NAME, 1); //CHECK FOR INVALID COMMAND LINE ARGUMENTS
-
     // Set the root path.
     PATH = argv[argind];
 
@@ -99,7 +95,6 @@ int	main(int argc, char *argv[]) {
         sleep(SECONDS);
         search(real, mapOfNodes, rulesVector, 1);
         examine(mapOfNodes, rulesVector);
-        cout << endl;
 
     }
 

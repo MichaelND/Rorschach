@@ -15,7 +15,10 @@ int rules (char *fullpath, vector<inputrules> &rulesVector) {
     //open file for reading
     file = fopen(fullpath, "r");
     if (file != NULL) {
-    	while (fgets(buffer, BUFSIZ, file) != nullptr && !streq(buffer, "\n")) { // NOTE: if rules file has extra endline then the && streq avoids that
+    	while (fgets(buffer, BUFSIZ, file) != nullptr) { // NOTE: if rules file has extra endline then the && streq avoids that
+            if (streq(buffer, "\n") || (streq(buffer[0], "#")))
+                continue;
+
             char* event = (char*) malloc(BUFSIZ);
             char* pattern = (char*) malloc(BUFSIZ);
             char* action = (char*) malloc(BUFSIZ);
