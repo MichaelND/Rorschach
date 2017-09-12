@@ -13,9 +13,10 @@ int match(const char *event, const char *fullpath, vector<inputrules> &rulesVect
             setenv("BASEPATH", name, 1);
             setenv("FULLPATH", fullpath, 1);
 
-            time_t timestamp = time (NULL);
+            time_t timestamp;
+            time(&timestamp);
+            setenv("TIMESTAMP", ctime(&timestamp), 1);
 
-            setenv("TIMESTAMP", asctime(localtime (&timestamp)), 1);
             execute(rule.action);
             rv = 1;
 		}

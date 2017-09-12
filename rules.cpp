@@ -20,9 +20,9 @@ int rules (char *fullpath, vector<inputrules> &rulesVector) {
             if ((strncmp(buffer, "\n", strlen("\n")) == 0) || (strncmp(buffer, "#", strlen("#")) == 0))
                 continue;
 
-            char* event = (char*) malloc(BUFSIZ);
-            char* pattern = (char*) malloc(BUFSIZ);
-            char* action = (char*) malloc(BUFSIZ);
+            char* event = (char*) calloc(1, BUFSIZ);
+            char* pattern = (char*) calloc(1, BUFSIZ);
+            char* action = (char*) calloc(1, BUFSIZ);
 
             sscanf(buffer, "%s %s %[^\n]" , event, pattern, action); //read from buffer and store into event, pattern, action
 
@@ -33,6 +33,7 @@ int rules (char *fullpath, vector<inputrules> &rulesVector) {
                 fclose(file);
                 return EXIT_FAILURE;
             }
+
             inputrules ptr = inputrules(event, pattern, action); 
             rulesVector.push_back(ptr);
     	}

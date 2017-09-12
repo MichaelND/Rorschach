@@ -32,6 +32,7 @@ void	   execute(const char *action) {
             break;
         case  0:        // Child
         	cout << "Executing action \"" << action << "\" on \"" << basepath << endl;
+        	cout << "TIMESTAMP: " << getenv("TIMESTAMP") << "EVENT: " << getenv("EVENT") << endl;
             execlp("/bin/sh", "/bin/sh", "-c", action, NULL);
             _exit(EXIT_FAILURE);
         default:        // Parent

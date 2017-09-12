@@ -1,5 +1,5 @@
-CREATE 
+CREATE  *.c cc -o ${BASEPATH} ${FULLPATH}
 
-MODIFY  *.txt   
+MODIFY  *.c echo hello
 
-DELETE  *	  true
+DELETE  *.c echo valgrinderror?e

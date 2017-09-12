@@ -12,6 +12,10 @@ using namespace std;
 
 /* Global Variables */
 vector<inputrules> rulesVector;   // Vector of vectors for rules
+char *PATH = NULL;
+char *PROGRAM_NAME = NULL;
+std::string RULES = "rules";
+char real[BUFSIZ];
 
 /* Functions */
 void usage(const char *program_name, int status) {
@@ -42,14 +46,8 @@ void signal_handler(int signal_number) {
 /* Main Execution */
 int	main(int argc, char *argv[]) {
     // Declare variables.
-    char *PROGRAM_NAME = NULL;
-    std::string RULES = "rules";
-    char *PATH = NULL;
     int SECONDS = 5;
     unordered_map<int, Node> mapOfNodes;
-
-    // Handle signal interrupts
-    signal(SIGINT, signal_handler);
 
     // Parse Command Line Arguments
     PROGRAM_NAME = argv[0];
@@ -58,6 +56,9 @@ int	main(int argc, char *argv[]) {
     if (argc == 1) {
         usage(PROGRAM_NAME, 1); // No command line arguments given
     }
+
+    // Handle signal interrupts
+    signal(SIGINT, signal_handler);
 
     // Parse through flags
     while (argind < argc && strlen(argv[argind]) > 1 && argv[argind][0] == '-') {
@@ -76,7 +77,6 @@ int	main(int argc, char *argv[]) {
     // Set the root path.
     PATH = argv[argind];
 
-    char real[BUFSIZ];
     realpath(PATH, real); //find the realpath and store it into real
 
     cout << "Monitoring " << real << endl;
@@ -92,11 +92,12 @@ int	main(int argc, char *argv[]) {
 
     search(real, mapOfNodes, rulesVector, 0);
     while (1) {
-        sleep(SECONDS);
         search(real, mapOfNodes, rulesVector, 1);
         examine(mapOfNodes, rulesVector);
-
+        sleep(SECONDS);
     }
+
+   
 
     return EXIT_SUCCESS;
 }
