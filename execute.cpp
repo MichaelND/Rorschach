@@ -21,10 +21,22 @@ void	   execute(const char *action) {
 	size_t f_pos = cppaction.find("${FULLPATH}");
 	cppaction.replace(f_pos, string("${FULLPATH}").length(), fullpath);
 
-	int i = 0;
-	char 
-	for (char *tok = strtok(cppaction.c_str(), " "); tok != NULL; tok = strtok(NULL, " ")) {
+	int spaces = 1;
+	for (size_t i = 0; i < cppaction.length(); i++) {
+		if (cppaction[i] == ' ') {
+			spaces++;
+		}
+	}
 
+	int j = 0;
+	char *arr[spaces];
+	for (char *tok = strtok((char *)cppaction.c_str(), " "); tok != NULL; tok = strtok(NULL, " ")) {
+		arr[j] = tok;
+		j++;
+	}
+
+	for (int k = 0; k < spaces; k++) {
+		cout << "ARRAY[" << k << "]: " << arr[k] << endl;
 	}
 
 	char garbo[BUFSIZ];
@@ -38,8 +50,8 @@ void	   execute(const char *action) {
 	cout << "Executing action " << cppaction << " on " << basepath << endl;
 
 
-	if (execvp(command, (char* const*)(cppaction.c_str()))) {
-		cout << "Success: " << cppaction << endl;
+	if (execvp(arr[0], arr)) {
+		cout << "Success: " << arr[0] << endl;
 	} else {
 		cout << "execvp failed: " << strerror(errno) << endl;
 	}
