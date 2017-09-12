@@ -4,7 +4,7 @@
 
 //execute after detection of created, deleted, or modified event
 void	   execute(const char *action) {
-	// char *basepath = getenv("BASEPATH");
+	char *basepath = getenv("BASEPATH");
 	// char *fullpath = getenv("FULLPATH");
 	// char *event = getenv("EVENT");
 	// char *timestamp = getenv("TIMESTAMP");
@@ -31,6 +31,7 @@ void	   execute(const char *action) {
             fprintf(stderr, "Unable to fork: %s\n", strerror(errno));
             break;
         case  0:        // Child
+        	cout << "Executing action \"" << action << "\" on \"" << basepath << endl;
             execlp("/bin/sh", "/bin/sh", "-c", action, NULL);
             _exit(EXIT_FAILURE);
         default:        // Parent

@@ -66,9 +66,9 @@ int	main(int argc, char *argv[]) {
         if (arg[1] == 'h')
             usage(PROGRAM_NAME, 0);
         else if (arg[1] == 'f')
-        	RULES = argv[2];
+        	RULES = argv[argind];
         else if (arg[1] == 't') 
-        	SECONDS = atoi(argv[2]);
+        	SECONDS = atoi(argv[argind]);
 
         argind++;
     }

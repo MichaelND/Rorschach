@@ -1,7 +1,5 @@
-CREATE  *.txt   echo _SO_RUDE_
+CREATE 
 
-MODIFY  *.txt   echo _WELCOME_HOME_
+MODIFY  *.txt   
 
-# asdf
-
-DELETE  *.txt   echo _LOL_
+DELETE  *	  true
