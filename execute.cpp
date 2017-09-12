@@ -21,11 +21,11 @@ void	   execute(const char *action) {
 	size_t f_pos = cppaction.find("${FULLPATH}");
 	cppaction.replace(f_pos, string("${FULLPATH}").length(), fullpath);
 
-	int i = 0;
-	char 
-	for (char *tok = strtok(cppaction.c_str(), " "); tok != NULL; tok = strtok(NULL, " ")) {
+	// int i = 0;
+	// char 
+	// for (char *tok = strtok(cppaction.c_str(), " "); tok != NULL; tok = strtok(NULL, " ")) {
 
-	}
+	// }
 
 	char garbo[BUFSIZ];
 	sscanf(action, "%s %[^\n]", command, garbo);
