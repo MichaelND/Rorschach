@@ -10,6 +10,9 @@
 
 using namespace std;
 
+/* Global Variables */
+vector<inputrules> rulesVector;   // Vector of vectors for rules
+
 /* Functions */
 void usage(const char *program_name, int status) {
 	fprintf(stderr, "Usage: %s [OPTIONS] ROOT\n", program_name);
@@ -22,9 +25,17 @@ void usage(const char *program_name, int status) {
 
 /* Signal Handler */
 void signal_handler(int signal_number) {
+    cout << endl;
     cout << "Cleaning up" << endl;
     // Clean up anything if need be...
-    cout << "Bye" << endl;
+
+    for (auto rule : rulesVector) {
+        free(rule.event);
+        free(rule.pattern);
+        free(rule.action);
+    }
+
+    cout << "Bye!" << endl;
     exit(EXIT_SUCCESS);
 }
 
@@ -36,7 +47,6 @@ int	main(int argc, char *argv[]) {
     char *PATH = NULL;
     int SECONDS = 5;
     unordered_map<int, Node> mapOfNodes;
-    vector<inputrules> rulesVector;   // Vector of vectors for rules
 
     // Handle signal interrupts
     signal(SIGINT, signal_handler);
@@ -88,7 +98,7 @@ int	main(int argc, char *argv[]) {
     while (1) {
         sleep(SECONDS);
         search(real, mapOfNodes, rulesVector, 1);
-        examine(mapOfNodes);
+        examine(mapOfNodes, rulesVector);
         cout << endl;
 
     }

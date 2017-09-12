@@ -9,8 +9,10 @@
 #include <stdio.h>
 #include <string>
 #include <string.h> // strcmp()
+#include <libgen.h> // basename()
 #include <fnmatch.h>
 #include <time.h>
+#include <unistd.h> // exec()
 
 #include <unordered_map>
 #include <vector>
@@ -65,8 +67,6 @@ struct inputrules {
 	char *action;
 };
 
-
-
 namespace std {
     template<> struct hash<Node> {
     	size_t operator()(const Node & n) const {
@@ -75,12 +75,11 @@ namespace std {
 	};
 }
 
-
 /* Search Prototype */
 int search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector, bool flag);
 
 /* Examine Prototype */
-void examine (unordered_map<int, Node> &mapOfNodes);
+void examine (unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector);
 
 /* Execute Prototype */
 void execute(const char *action);
