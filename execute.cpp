@@ -4,26 +4,45 @@
 
 //execute after detection of created, deleted, or modified event
 void	   execute(const char *action) {
-	char *basepath, *fullpath, *event, *timestamp;
+	char *basepath = getenv("BASEPATH");
+	char *fullpath = getenv("FULLPATH");
+	char *event = getenv("EVENT");
+	char *timestamp = getenv("TIMESTAMP");
+	char e_basepath[strlen(basepath) + sizeof("PATH=")];
+	char e_fullpath[strlen(fullpath) + sizeof("PATH=")];
+	char e_event[strlen(event) + sizeof("PATH=")];
+	char e_timestamp[strlen(timestamp) + sizeof("PATH=")];
 	char command[BUFSIZ];
-
-	basepath = getenv("BASEPATH");
-	fullpath = getenv("FULLPATH");
-	event = getenv("EVENT");
-	timestamp = getenv("TIMESTAMP");
-
-	cout << "base: " << basepath << " full: " << fullpath << " event: " << event << " time :" << timestamp << endl;
 
 	if (!sprintf(command, "%s %s", basepath, action)) {
 		cout << "fail sprintf" << endl;
 	}
+
+	sprintf(e_basepath, "BASEPATH=%s", getenv("BASEPATH"));
+	sprintf(e_fullpath, "FULLPATH=%s", getenv("FULLPATH"));
+	sprintf(e_event, "EVENT=%s", getenv("EVENT"));
+	sprintf(e_timestamp, "TIMESTAMP=%s", getenv("TIMESTAMP"));
+
+	char *envVariables[] {e_basepath, e_fullpath, e_event, e_timestamp, NULL};
+
+	cout << "base: " << basepath << " full: " << fullpath << " event: " << event << " time :" << timestamp << endl;
+
+
 	cout << "command:" << command << endl;
 
-	cout << "Executing action " << action << " on " << basepath << endl;
+	cout << "Executing action " << action << " on " << basepath << " with envVariables: " << envVariables << endl;
 
-	if (execvp(basepath, (char* const*)command)) {
-		cout << "Success" << endl;
-	} else {
-		cout << "execvp failed: " << strerror(errno) << endl;
-	}
+	pid_t pid = fork();
+    switch (pid) {
+        case -1:        // Error
+            fprintf(stderr, "Unable to fork: %s\n", strerror(errno));
+            break;
+        case  0:        // Child
+            execlp("/bin/sh", "/bin/sh", "-c", action, NULL);
+            _exit(EXIT_FAILURE);
+        default:        // Parent
+            wait(NULL);
+            break;
+    }
+
 }
