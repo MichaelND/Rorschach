@@ -25,6 +25,13 @@ void	   execute(const char *action) {
 
 	char *envVariables[] {e_basepath, e_fullpath, e_event, e_timestamp, NULL};
 
+	cout << "base: " << basepath << " full: " << fullpath << " event: " << event << " time :" << timestamp << endl;
+
+
+	cout << "command:" << command << endl;
+
+	cout << "Executing action " << action << " on " << basepath << " with envVariables: " << envVariables << endl;
+
 	pid_t pid = fork();
     switch (pid) {
         case -1:        // Error

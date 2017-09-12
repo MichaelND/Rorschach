@@ -39,11 +39,6 @@ void signal_handler(int signal_number) {
     exit(EXIT_SUCCESS);
 }
 
-/* Alarm Handler */
-void alarm_handler(int signum) {
-    exit(EXIT_FAILURE);
-}
-
 /* Main Execution */
 int	main(int argc, char *argv[]) {
     // Declare variables.
@@ -59,8 +54,6 @@ int	main(int argc, char *argv[]) {
     // Parse Command Line Arguments
     PROGRAM_NAME = argv[0];
     int argind = 1;
-
-    signal(SIGALRM, alarm_handler);
 
     if (argc == 1) {
         usage(PROGRAM_NAME, 1); // No command line arguments given
@@ -79,6 +72,10 @@ int	main(int argc, char *argv[]) {
 
         argind++;
     }
+
+    //check for improper formatting
+    if (argind >= argc) 
+        usage(PROGRAM_NAME, 1); //CHECK FOR INVALID COMMAND LINE ARGUMENTS
 
     // Set the root path.
     PATH = argv[argind];
@@ -102,6 +99,8 @@ int	main(int argc, char *argv[]) {
         sleep(SECONDS);
         search(real, mapOfNodes, rulesVector, 1);
         examine(mapOfNodes, rulesVector);
+        cout << endl;
+
     }
 
     return EXIT_SUCCESS;
