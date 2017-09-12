@@ -13,5 +13,9 @@ void	   execute(const char *action) {
 
 	cout << "Executing action " << action << " on " << basepath << endl;
 
-	
+	// if (execvp(basepath, action)) {
+	// 	cout << "Success" << endl;
+	// } else {
+	// 	cout << "execvp failed: " << strerror(errno) << endl;
+	// }
 }

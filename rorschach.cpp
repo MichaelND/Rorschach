@@ -98,7 +98,7 @@ int	main(int argc, char *argv[]) {
     while (1) {
         sleep(SECONDS);
         search(real, mapOfNodes, rulesVector, 1);
-        examine(mapOfNodes);
+        examine(mapOfNodes, rulesVector);
         cout << endl;
 
     }
