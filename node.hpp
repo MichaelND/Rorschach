@@ -65,8 +65,6 @@ struct inputrules {
 	char *action;
 };
 
-
-
 namespace std {
     template<> struct hash<Node> {
     	size_t operator()(const Node & n) const {
@@ -74,7 +72,6 @@ namespace std {
     	}
 	};
 }
-
 
 /* Search Prototype */
 int search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector, bool flag);

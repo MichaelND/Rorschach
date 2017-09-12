@@ -17,15 +17,18 @@ void examine(unordered_map<int, Node> &mapOfNodes) {
         		cout << "Detected \"MODIFY\" event on \"" << path << "\"" << endl;
                 setenv("EVENT", "MODIFY", 1); //set environment variable event to delete
         		(*it).second.setMTime(s.st_mtime);	// Update m_time of file node.
-                // if (match()) {
-                //     execute();
-                // }
+                if (!match(pattern, path, rulesVector, dentry->d_name)) {
+                    continue;
+                }
         	}
         } else {
         	// File does not exist.
         	cout << "Detected \"DELETE\" event on \"" << path << "\"" << endl;
             setenv("EVENT", "DELETE", 1); //set environment variable event to delete
         	v_inodes.push_back(inode);
+            if (!match(pattern, path, rulesVector, dentry->d_name)) {
+                continue;
+            }
         }
     }
 
