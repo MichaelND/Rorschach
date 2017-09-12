@@ -5,15 +5,12 @@
 
 #include <iostream>
 #include <sys/stat.h>
-#include <sys/wait.h>
 
 #include <stdio.h>
 #include <string>
 #include <string.h> // strcmp()
-#include <libgen.h> // basename()
 #include <fnmatch.h>
 #include <time.h>
-#include <unistd.h> // exec()
 
 #include <unordered_map>
 #include <vector>
@@ -80,7 +77,7 @@ namespace std {
 int search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector, bool flag);
 
 /* Examine Prototype */
-void examine (unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector);
+void examine (unordered_map<int, Node> &mapOfNodes);
 
 /* Execute Prototype */
 void execute(const char *action);

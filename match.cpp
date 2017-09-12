@@ -7,7 +7,7 @@ int match(const char *event, const char *fullpath, vector<inputrules> &rulesVect
 
 	for (auto rule : rulesVector) {
 		if (streq(event, rule.event) && (fnmatch(rule.pattern, fullpath, 0) == 0)) { // Event matches a rule set in rules file and file matches pattern.
-			cout << "matched event and pattern" << endl;
+			cout << "Matched \"" << rule.pattern << "\" event on \"" << name << "\"" << endl;
 
 			setenv("EVENT", "CREATE", 1); //set environment variable event to delete
             setenv("BASEPATH", name, 1);
