@@ -51,8 +51,6 @@ int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<in
                     if (flag) {   
                         cout << "Detected \"CREATE\" event on \"" << path << "\"" << endl;
                         const char *pattern = "CREATE";
-                        setenv("EVENT", "CREATE", 1); //set environment variable event to delete
-
                         if (!match(pattern, path, rulesVector, dentry->d_name)) {
                             continue;
                         }

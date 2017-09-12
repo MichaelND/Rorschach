@@ -10,6 +10,7 @@ int match(const char *event, const char *fullpath, vector<inputrules> &rulesVect
 		if (streq(event, rule.event) && ((fnmatch(rule.pattern, fullpath, 0) == 0) || streq(rule.pattern, name))) { // Event matches a rule set in rules file and file matches pattern.
 			cout << "Matched \"" << rule.pattern << "\" pattern on \"" << name << "\"" << endl; 
 
+			setenv("EVENT", event, 1);
             setenv("BASEPATH", name, 1);
             setenv("FULLPATH", fullpath, 1);
 

@@ -25,6 +25,7 @@ int rules (char *fullpath, vector<inputrules> &rulesVector) {
             char* action = (char*) calloc(1, BUFSIZ);
 
             sscanf(buffer, "%s %s %[^\n]" , event, pattern, action); //read from buffer and store into event, pattern, action
+            
 
             if (streq(pattern, "") || streq(action, "")) {
                 free(event);
