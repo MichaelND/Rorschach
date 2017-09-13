@@ -12,7 +12,7 @@ void	   execute(const char *action) {
             fprintf(stderr, "Unable to fork: %s\n", strerror(errno));
             break;
         case  0:        // Child
-        	cout << "Executing action \"" << action << "\" on \"" << basepath << endl;
+        	cout << "Executing action \"" << action << "\" on \"" << basepath << "\""<< endl;
 
        	 	if (execlp("/bin/sh", "/bin/sh", "-c", action, NULL) < 0)
        	 		_exit(EXIT_FAILURE);

@@ -1,2 +1,2 @@
-CREATE  *.c         cc -o ${BASEPATH} ${FULLPATH}
+CREATE  *.txt       echo ${BASEAME}
 MODIFY  *.c         cc -o ${BASEPATH} ${FULLPATH}
