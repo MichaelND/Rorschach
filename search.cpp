@@ -17,7 +17,9 @@
  * @return  Whether or not the search was successful.
  */
 int	    search(const char *root, unordered_map<int, Node> &mapOfNodes, vector<inputrules> &rulesVector, bool flag) {	
-    DIR * parent_dir = opendir(root);
+    char real[BUFSIZ];
+    realpath(ROOT, real); // Find the realpath and store it into real
+    DIR * parent_dir = opendir(real);
     if (parent_dir == NULL) { return EXIT_FAILURE; }    // Check if directory is openable
 
     struct dirent * dentry;
