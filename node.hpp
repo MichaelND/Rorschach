@@ -21,6 +21,7 @@
 
 using namespace std;
 
+
 /* Macros */
 #define	    streq(s0, s1)   (strcmp((s0), (s1)) == 0)
 

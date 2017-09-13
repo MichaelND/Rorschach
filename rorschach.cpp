@@ -10,9 +10,10 @@
 
 using namespace std;
 
+
 /* Global Variables */
 vector<inputrules> rulesVector;   // Vector of vectors for rules
-char *PATH = NULL;
+char *ROOT = NULL;
 char *PROGRAM_NAME = NULL;
 std::string RULES = "rules";
 char real[BUFSIZ];
@@ -75,9 +76,9 @@ int	main(int argc, char *argv[]) {
     }
 
     // Set the root path.
-    PATH = argv[argind];
+    ROOT = argv[argind];
 
-    realpath(PATH, real); //find the realpath and store it into real
+    realpath(ROOT, real); // Find the realpath and store it into real
 
     cout << "Monitoring " << real << endl;
 
@@ -92,7 +93,7 @@ int	main(int argc, char *argv[]) {
 
     search(real, mapOfNodes, rulesVector, 0);
     while (1) {
-        search(real, mapOfNodes, rulesVector, 1);
+        search(ROOT, mapOfNodes, rulesVector, 1);
         examine(mapOfNodes, rulesVector);
         sleep(SECONDS);
     }
