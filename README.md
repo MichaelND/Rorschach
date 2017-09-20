@@ -108,8 +108,7 @@ Errata
 ------
 
 > Describe any known errors, bugs, or deviations from the requirements.
-	TODO: DONALD
-	We assume we are on a single partition and so we use inodes as the key for our map. 
+	We met all of the requirements of demo.py. Our program stored a file and its inode number into a node struct where a map used the inode as its key to a node struct. We assumed that rorschach was to be ran on a single computer partition. If we assumed that rorschach scanned multiple partitions then we would change our map to point to a list of nodes rather than a single node struct. There are no known deviations from the project requirements.
 
 Extra Credit
 ------------
